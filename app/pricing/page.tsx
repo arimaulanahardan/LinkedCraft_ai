@@ -9,22 +9,22 @@ import { loadStripe } from "@stripe/stripe-js";
 const pricingPlans = [
   {
     name: "Basic",
-    price: "9",
+    price: "10.000",
     priceId: "price_1QMkV3LZMR6cnLo1rxR1V00f",
     features: [
-      "100 AI-generated posts per month",
-      "Twitter thread generation",
-      "Basic analytics",
+      "100 AI-generated LinkedIn post per month",
+      "Post suggestions based on trending topics",
+      "Basic post performance analytics",
     ],
   },
   {
     name: "Pro",
-    price: "29",
+    price: "50.000",
     priceId: "price_1QMkWdLZMR6cnLo1pjgSqGeA",
     features: [
-      "500 AI-generated posts per month",
-      "Twitter, Instagram, and LinkedIn content",
-      "Advanced analytics",
+      "500 AI-generated LinkedIn posts per month",
+      "Customizable tone and style for content",
+      "Advanced post performance insights",
       "Priority support",
     ],
   },
@@ -33,10 +33,10 @@ const pricingPlans = [
     price: "Custom",
     priceId: null,
     features: [
-      "Unlimited AI-generated posts",
-      "All social media platforms",
-      "Custom AI model training",
-      "Dedicated account manager",
+      "Unlimited AI-generated LinkedIn posts",
+      "Custom AI model tuned to your industry",
+      "Collaborative tools for team content creation",
+      "Comprehensive analytics dashboard",
     ],
   },
 ];
@@ -99,7 +99,7 @@ export default function PricingPage() {
                 {plan.name}
               </h2>
               <p className="text-4xl font-bold mb-6 text-white">
-                ${plan.price}
+                {index === pricingPlans.length - 1 ? plan.price : `Rp${plan.price}`}
                 <span className="text-lg font-normal text-gray-400">
                   /month
                 </span>
