@@ -41,8 +41,8 @@ const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
 
 const contentTypes = [
-  { value: "twitter", label: "Twitter Thread" },
-  { value: "instagram", label: "Instagram Caption" },
+  // { value: "twitter", label: "Twitter Thread" },
+  // { value: "instagram", label: "Instagram Caption" },
   { value: "linkedin", label: "LinkedIn Post" },
 ];
 
@@ -136,7 +136,7 @@ export default function GenerateContent() {
         promptText +=
           " Provide a thread of 5 tweets, each under 280 characters.";
       }
-  
+
       let imagePart: Part | null = null;
       if (contentType === "instagram" && image) {
         const reader = new FileReader();
@@ -231,13 +231,21 @@ export default function GenerateContent() {
       case "twitter":
         return <TwitterMock content={generatedContent} />;
       case "instagram":
-        return   <InstagramMock
-        content={generatedContent[0]} // Caption content
-        imageSrc={imageSrc}          // Image source
-        userName={user?.fullName || "Anonymous"} // User's name
-    />;
+        return (
+          <InstagramMock
+            content={generatedContent[0]} // Caption content
+            imageSrc={imageSrc} // Image source
+            userName={user?.fullName || "Anonymous"} // User's name
+          />
+        );
       case "linkedin":
-        return <LinkedInMock content={generatedContent[0]} />;
+        return (
+          <LinkedInMock
+            name={user?.fullName || "Nama Anda"}
+            username={user?.fullName || "Username Anda"}
+            content={generatedContent[0]}
+          />
+        );
       default:
         return null;
     }
@@ -252,7 +260,7 @@ export default function GenerateContent() {
       <div className="flex items-center justify-center min-h-screen bg-[#0a0a0a]">
         <div className="text-center bg-[#111111] p-8 rounded-lg shadow-lg">
           <h1 className="text-3xl font-bold text-white mb-4">
-            Welcome to ThreadCraft AI
+            Welcome to LinkedCraft AI
           </h1>
           <p className="text-gray-400 mb-6">
             To start generating amazing content, please sign in or create an
@@ -279,57 +287,19 @@ export default function GenerateContent() {
       // Convert image to base64
       const reader = new FileReader();
       reader.onload = (e) => {
-          if (e.target && typeof e.target.result === "string") {
-              setImageSrc(e.target.result); // Save the base64 image src
-          }
+        if (e.target && typeof e.target.result === "string") {
+          setImageSrc(e.target.result); // Save the base64 image src
+        }
       };
       reader.readAsDataURL(file);
-  }
+    }
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-900 to-black min-h-screen text-white">
+    <div className="bg-gradient-to-b from-[#c5d8f6] 0% to-[#e1feff] 100% w-full text-white">
       <Navbar />
-      <div className="container mx-auto px-4 mb-8 sm:px-6 lg:px-8 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 mt-14 lg:grid-cols-3 gap-8">
-          {/* Left sidebar - History */}
-          <div className="lg:col-span-1 bg-gray-800 rounded-2xl p-6 h-[calc(100vh-12rem)] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold text-blue-400">History</h2>
-              <Clock className="h-6 w-6 text-blue-400" />
-            </div>
-            <div className="space-y-4">
-              {history.map((item) => (
-                <div
-                  key={item.id}
-                  className="p-4 bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors cursor-pointer"
-                  onClick={() => handleHistoryItemClick(item)}
-                >
-                  <div className="flex items-center mb-2">
-                    {item.contentType === "twitter" && (
-                      <Twitter className="mr-2 h-5 w-5 text-blue-400" />
-                    )}
-                    {item.contentType === "instagram" && (
-                      <Instagram className="mr-2 h-5 w-5 text-pink-400" />
-                    )}
-                    {item.contentType === "linkedin" && (
-                      <Linkedin className="mr-2 h-5 w-5 text-blue-600" />
-                    )}
-                    <span className="text-sm font-medium">
-                      {item.contentType}
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-300 truncate">
-                    {item.prompt}
-                  </p>
-                  <div className="flex items-center text-xs text-gray-400 mt-2">
-                    <Clock className="mr-1 h-3 w-3" />
-                    {new Date(item.createdAt).toLocaleString()}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* Main content area */}
           <div className="lg:col-span-2 space-y-6">
@@ -366,12 +336,12 @@ export default function GenerateContent() {
                     {contentTypes.map((type) => (
                       <SelectItem key={type.value} value={type.value}>
                         <div className="flex items-center">
-                          {type.value === "twitter" && (
+                          {/* {type.value === "twitter" && (
                             <Twitter className="mr-2 h-4 w-4 text-blue-400" />
                           )}
                           {type.value === "instagram" && (
                             <Instagram className="mr-2 h-4 w-4 text-pink-400" />
-                          )}
+                          )} */}
                           {type.value === "linkedin" && (
                             <Linkedin className="mr-2 h-4 w-4 text-blue-600" />
                           )}
@@ -504,6 +474,38 @@ export default function GenerateContent() {
                 {renderContentMock()}
               </div>
             )}
+          </div>
+          {/* Left sidebar - History */}
+          <div className="lg:col-span-1 bg-gray-800 rounded-2xl p-6 h-[calc(100vh-12rem)] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-semibold text-blue-400">History</h2>
+              <Clock className="h-6 w-6 text-blue-400" />
+            </div>
+            <div className="space-y-4">
+              {history.map((item) => (
+                <div
+                  key={item.id}
+                  className="p-4 bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors cursor-pointer"
+                  onClick={() => handleHistoryItemClick(item)}
+                >
+                  <div className="flex items-center mb-2">
+                    {item.contentType === "linkedin" && (
+                      <Linkedin className="mr-2 h-5 w-5 text-blue-600" />
+                    )}
+                    <span className="text-sm font-medium">
+                      {item.contentType}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-300 truncate">
+                    {item.prompt}
+                  </p>
+                  <div className="flex items-center text-xs text-gray-400 mt-2">
+                    <Clock className="mr-1 h-3 w-3" />
+                    {new Date(item.createdAt).toLocaleString()}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

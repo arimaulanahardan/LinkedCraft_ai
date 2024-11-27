@@ -1,50 +1,51 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
-  TwitterIcon,
-  InstagramIcon,
-  LinkedinIcon,
+  TimerReset,
+  ShieldCheck,
+  Rocket,
+  HandCoins,
   ArrowRightIcon,
   CheckCircleIcon,
   SparklesIcon,
   TrendingUpIcon,
   ZapIcon,
   RocketIcon,
+  LinkedinIcon,
 } from "lucide-react";
 import { auth } from "@clerk/nextjs/server";
 import { SignUpButton } from "@clerk/nextjs";
 import { Navbar } from "@/components/Navbar";
+import Image from "next/image";
 
 export default function Home() {
   const { userId } = auth();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-gray-100 overflow-hidden pt-20">
+    <div className="min-h-screen bg-gradient-to-b from-[#c5d8f6] 0% to-[#e1feff] 100% text-gray-100 overflow-hidden pt-20">
       <Navbar />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Decorative elements */}
-        <div className="absolute top-20 left-10 animate-float">
-          <SparklesIcon className="w-8 h-8 text-yellow-400 opacity-50" />
-        </div>
         <div className="absolute top-40 right-20 animate-float animation-delay-2000">
-          <ZapIcon className="w-10 h-10 text-blue-400 opacity-50" />
+          <ZapIcon className="w-10 h-10 text-[#031b20] opacity-50 animate-bounce" />
         </div>
         <div className="absolute bottom-20 left-1/4 animate-float animation-delay-4000">
           <TrendingUpIcon className="w-12 h-12 text-green-400 opacity-50" />
         </div>
 
         {/* Hero Section */}
-        <div className="text-center py-20 lg:py-32 relative">
-          <RocketIcon className="w-16 h-16 text-purple-500 mx-auto mb-6 animate-bounce" />
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-            AI-Powered Social Media Content Generator
-          </h1>
-          <p className="text-xl mb-10 text-gray-300 max-w-2xl mx-auto">
-            Create engaging content for Twitter, Instagram, and LinkedIn with
-            cutting-edge AI technology.
-          </p>
-          <div className="flex justify-center space-x-4">
+        <div className="text-left py-20 lg:py-32 block lg:flex justify-between">
+          <div>
+            <LinkedinIcon className="w-16 h-16 text-purple-500 mb-6 animate-bounce" />
+            <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+              Create Powerful LinkedIn Content in Seconds
+            </h1>
+            <p className="text-xl mb-10 bg-gradient-to-r from-neutral-800 to-sky-900 bg-clip-text text-transparent">
+              LinkedCraft AI is your ultimate tool to craft professional,
+              engaging, and tailored LinkedIn posts effortlessly.
+            </p>
+            <div className="flex space-x-4">
             <Button
               asChild
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105"
@@ -57,35 +58,48 @@ export default function Home() {
             >
               <Link href="#features">Learn More</Link>
             </Button>
+            </div>
+          </div>
+          <div className="flex">
+            <Image
+              src="/hero.png"
+              className="hidden lg:block"
+              width={900}
+              height={100}
+              alt="Illustration of a person working on a computer"
+            />
           </div>
         </div>
 
         {/* Features Section */}
         <div className="py-20" id="features">
-          <h2 className="text-3xl font-bold mb-16 text-center text-white">
-            Supercharge Your Social Media Presence
+          <h2 className="text-3xl font-bold mb-16 text-center bg-gradient-to-r from-neutral-800 to-sky-900 bg-clip-text text-transparent">
+            Why LinkedCraft?
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 max-w-5xl mx-auto">
             {[
               {
-                title: "Twitter Threads",
-                icon: <TwitterIcon className="w-10 h-10 mb-4 text-blue-400" />,
+                title: "Save Time",
+                icon: <TimerReset className="w-10 h-10 mb-4 text-[#f21c1c]" />,
                 description:
-                  "Generate compelling Twitter threads that engage your audience and boost your reach.",
+                  "Let AI handle the heavy lifting of content creation.",
               },
               {
-                title: "Instagram Captions",
-                icon: (
-                  <InstagramIcon className="w-10 h-10 mb-4 text-pink-400" />
-                ),
-                description:
-                  "Create catchy captions for your Instagram posts that increase engagement and followers.",
+                title: "Professional Quality",
+                icon: <ShieldCheck className="w-10 h-10 mb-4 text-[#1c47f2]" />,
+                description: "Generate posts that resonate with your audience.",
               },
               {
-                title: "LinkedIn Posts",
-                icon: <LinkedinIcon className="w-10 h-10 mb-4 text-blue-600" />,
+                title: "Tailored to Your Needs",
+                icon: <HandCoins className="w-10 h-10 mb-4 text-[#ee1cf2]" />,
                 description:
-                  "Craft professional content for your LinkedIn network to establish thought leadership.",
+                  "Customize content for your industry, tone, and goals.",
+              },
+              {
+                title: "Boost Engagement",
+                icon: <Rocket className="w-10 h-10 mb-4 text-[#1ccef2]" />,
+                description:
+                  "Create posts that drive conversations and connections.",
               },
             ].map((feature, index) => (
               <div
@@ -105,7 +119,7 @@ export default function Home() {
         </div>
 
         {/* Benefits Section */}
-        <div className="py-20 bg-gray-900 rounded-3xl my-20 relative">
+        <div className="py-10 bg-gradient-to-r from-[#0c182d] 0% to-[#124a4c] 100% rounded-3xl my-20 relative">
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-3xl">
             <svg
               className="absolute w-full h-full"
@@ -135,16 +149,13 @@ export default function Home() {
           </div>
           <div className="relative z-10">
             <h2 className="text-3xl font-bold mb-12 text-center text-white">
-              Why Choose Our AI Content Generator?
+              How It Works?
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto px-6">
               {[
-                "Save time and effort on content creation",
-                "Consistently produce high-quality posts",
-                "Increase engagement across all platforms",
-                "Stay ahead of social media trends",
-                "Customize content to match your brand voice",
-                "Scale your social media presence effortlessly",
+                "Input Your Idea: Share a topic or a few key points.",
+                "Let AI Create: Watch as LinkedCraft AI crafts a polished LinkedIn post.",
+                "Review & Share: Edit (if needed) and publish directly to LinkedIn.",
               ].map((benefit, index) => (
                 <div key={index} className="flex items-center space-x-3">
                   <CheckCircleIcon className="w-6 h-6 text-green-500 flex-shrink-0" />
@@ -180,16 +191,22 @@ export default function Home() {
               />
             </svg>
           </div>
-          <h2 className="text-4xl font-bold mb-8 text-white">
-            Ready to revolutionize your social media strategy?
-          </h2>
+          <div className="mb-8 space-y-4 bg-gradient-to-r from-neutral-800 to-sky-900 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold">
+              Ready to Level Up Your LinkedIn Game?
+            </h2>
+            <p>
+              Join thousands of professionals using LinkedCraft AI to grow their
+              LinkedIn presence effortlessly.
+            </p>
+          </div>
           {userId ? (
             <Button
               asChild
               className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105"
             >
               <Link href="/generate">
-                Generate Content Now <ArrowRightIcon className="ml-2 h-5 w-5" />
+                Get Started Today <ArrowRightIcon className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           ) : (
@@ -199,7 +216,9 @@ export default function Home() {
               </Button>
             </SignUpButton>
           )}
-          <p className="mt-4 text-gray-400">No credit card required</p>
+          <p className="mt-10 text-gray-400">
+            (c) Ari & Rio AI ENgineer Batch 30
+          </p>
         </div>
       </main>
     </div>

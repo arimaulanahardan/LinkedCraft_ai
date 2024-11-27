@@ -6,7 +6,7 @@ LinkedCraft is a powerful Next.js application that leverages AI to generate enga
 
 ## Features
 
-- AI-powered content generation for Twitter, Instagram, and LinkedIn
+- AI-powered content generation for LinkedIn
 - User authentication and account management with Clerk
 - Points-based system for content generation
 - Content history and regeneration

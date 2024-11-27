@@ -83,17 +83,17 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-gray-100">
+    <div className="min-h-screen bg-gradient-to-b from-[#c5d8f6] 0% to-[#e1feff] 100% text-gray-100">
       <Navbar />
       <main className="container mx-auto px-8 py-20">
-        <h1 className="text-5xl font-bold mb-12 text-center text-white">
+        <h1 className="text-5xl font-bold mb-12 text-center bg-gradient-to-r from-neutral-800 to-sky-900 bg-clip-text text-transparent">
           Pricing Plans
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {pricingPlans.map((plan, index) => (
             <div
               key={index}
-              className="p-8 rounded-lg border border-gray-800 flex flex-col"
+              className="p-8 rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1 flex flex-col "
             >
               <h2 className="text-2xl font-bold mb-4 text-white">
                 {plan.name}

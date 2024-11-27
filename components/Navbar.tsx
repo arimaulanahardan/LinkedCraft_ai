@@ -9,7 +9,7 @@ import {
   useAuth,
 } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X, Linkedin } from "lucide-react";
 
 export function Navbar() {
   const { userId } = useAuth();
@@ -27,21 +27,21 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-gray-900/80 backdrop-blur-md" : "bg-transparent"
+        isScrolled ? "bg-white backdrop-blur-xl" : "bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-8 py-4 sm:py-6">
         <div className="flex flex-wrap justify-between items-center max-w-6xl mx-auto">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <Zap className="w-8 h-8 text-blue-500" />
-              <span className="text-xl sm:text-2xl font-bold text-white">
-                ThreadCraft AI
+              <Linkedin className="w-8 h-8 text-[#1ccef2]" />
+              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-neutral-800 to-sky-900 bg-clip-text text-transparent">
+                LinkedCraft AI
               </span>
             </Link>
           </div>
           <button
-            className="sm:hidden text-white focus:outline-none"
+            className="sm:hidden bg-gradient-to-r from-neutral-800 to-sky-900 bg-clip-text text-transparent focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
@@ -60,7 +60,7 @@ export function Navbar() {
                 <Link
                   key={item}
                   href={`/${item.toLowerCase()}`}
-                  className="text-gray-300 hover:text-white transition-colors py-2 sm:py-0 relative group"
+                  className="bg-gradient-to-r from-neutral-800 to-sky-900 bg-clip-text text-transparent hover:text-balck transition-colors py-2 sm:py-0 relative group"
                 >
                   {item}
                   <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -69,7 +69,7 @@ export function Navbar() {
               {userId && (
                 <Link
                   href="/generate"
-                  className="text-gray-300 hover:text-white transition-colors py-2 sm:py-0 relative group"
+                  className="bg-gradient-to-r from-neutral-800 to-sky-900 bg-clip-text text-transparent hover:text-black transition-colors py-2 sm:py-0 relative group"
                 >
                   Dashboard
                   <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
